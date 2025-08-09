@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Programming Joke Generator</title>
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 80px;
+  background-color: #eef2f3;
+}
+ 
+h2 {
+  font-size: 64px;
+  color: #222;
+  margin-bottom: 50px;
+}
+ 
+button {
+  padding: 24px 48px;
+  font-size: 36px;
+  margin: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  background-color: #007acc;
+  color: white;
+  transition: background-color 0.3s;
+}
+ 
+button:hover {
+  background-color: #005f99;
+}
+ 
+#setup {
+  font-size: 40px;
+  margin-top: 40px;
+  color: #111;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+ 
+#punchline {
+  font-size: 36px;
+  margin-top: 25px;
+  color: #930dbc;
+  font-weight: bold;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+ 
+ 
+ 
+@media (max-width: 600px) {
+  body {
+    padding: 30px 20px;
+  }
+ 
+  h2 {
+    font-size: 36px;
+  }
+ 
+  button {
+    font-size: 20px;
+    padding: 14px 28px;
+    margin: 12px;
+  }
+ 
+  #setup {
+    font-size: 22px;
+  }
+ 
+  #punchline {
+    font-size: 20px;
+  }
+}
+ 
+ 
+  </style>
+</head>
+<body>
+ 
+  <h2>💻 Programming Joke Generator</h2>
+ 
+  <button onclick="fetchProgJoke()">Get Programming Joke</button>
+  <div id="setup">Press the button to fetch a joke...</div>
+  <button id="revealBtn" onclick="revealJoke()" style="display:none">Reveal</button>
+  <div id="punchline"></div>
+ 
+  <script>
+    let punch = "";
+ 
+    function fetchProgJoke() {
+      document.getElementById("setup").innerText = "Loading joke...";
+      document.getElementById("punchline").innerText = "";
+      document.getElementById("revealBtn").style.display = "none";
+ 
+      fetch("https://official-joke-api.appspot.com/jokes/programming/random")
+        .then(resp => resp.json())
+        .then(data => {
+          const joke = data[0];
+          document.getElementById("setup").innerText = joke.setup;
+          punch = joke.punchline;
+          document.getElementById("revealBtn").style.display = "inline";
+        })
+        .catch(() => {
+          document.getElementById("setup").innerText = "Oops! Couldn't load a joke.";
+        });
+    }
+ 
+    function revealJoke() {
+      document.getElementById("punchline").innerText = punch;
+      document.getElementById("revealBtn").style.display = "none";
+    }
+  </script>
+</body>
+</html>
+ 
+Advertisement
+$VIZITS: New meme coin to is hot!
+Check out $VIZITS Coin website.
+Trade $VIZITS Coin Now! Click For More!
+New Meme Coin Has Arrived!
+Add Comment
